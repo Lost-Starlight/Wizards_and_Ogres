@@ -70,6 +70,23 @@ class HealthItem:
   def heal_user(self, user):
     user.add_hp += self.heal_amount
 
+def combat(player, enemy):
+  while player.game_over == False and enemy.is_defeated == False:
+    print(enemy)
+    choiceb = input("What would you like to do?: attack, check status. ")
+    while choiceb != 'attack' and choiceb != 'check status': 
+      choiceb = input("Oops! That was not a valid input! Please try again! ")
+    if choiceb == 'attack':
+      print("You attack " + enemy.name +"!")
+      enemy.lose_hp(player.attack)
+      print(enemy.name + " lost " + str(player.attack) + " HP!")
+      print(enemy.name + " attacks you!")
+      player.lose_hp(enemy.attack_power)
+      print("You lose " + str(enemy.attack_power) + " HP!")
+      continue
+    else:
+      print(player)
+      continue
 
 potion = HealthItem("Potion", 25)
 mega_potion = HealthItem("Mega Potion", 75)
